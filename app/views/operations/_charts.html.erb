@@ -1,0 +1,2 @@
+<%= pie_chart operations.group(:tag).sum(:value) unless @filtered_operations.group(:tag).count.size == 1 %>
+<%= area_chart operations.group_by_day(:date).sum(:value) %>

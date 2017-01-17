@@ -1,0 +1,45 @@
+<%= form_for_filterrific @filterrific, url:{action: 'filter'}, html: { id: 'filterrific-no-ajax-auto-submit', method: 'post' } do |f| %>
+
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <label>Date between</label>
+    <%= f.date_field(:with_date_gte, max: Date.today, class: 'form-control') %>
+    <%= f.date_field(:with_date_lte, max: Date.today, class: 'form-control') %>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <label>Value between</label>
+    <%= f.number_field(:with_value_gte, step: "0.01", min: "0", max: "99999.99", class: "form-control") %>
+    <%= f.number_field(:with_value_lte, step: "0.01", min: "0", max: "99999.99", class: "form-control") %>
+    <label>Operations type</label>
+    <%= f.select(:with_credit, @filterrific.select_options[:with_credit], {}, class: "btn btn-default dropdown-toggle") %>
+    <br><br>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <label>Search in comments</label>
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(:search_comment, class: "form-control") %>
+    <label>Tag</label>
+    <%= f.collection_select(:with_tag, current_user.operations.select(:tag).distinct, :tag, :tag, { include_blank: '- Any -' }, class: "btn btn-default dropdown-toggle") %>
+    <br><br>
+  </div>
+
+  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <label>Sorted by</label>
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {}, class: "btn btn-default dropdown-toggle") %>
+    <br><br>
+    <label>Operations on page</label>
+    <select name="per_page", class="btn btn-default dropdown-toggle">
+      <option>10</option>
+      <option>20</option>
+      <option>50</option>
+      <option>100</option>
+    </select>
+    <br><br>
+    <%= link_to('Reset filters', reset_filterrific_url, class: "btn btn-default") %>
+    <%= f.submit 'Accept', class: "btn btn-success" %>
+  </div>
+
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>

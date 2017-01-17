@@ -1,0 +1,19 @@
+<h1><%= text_h1_tag %></h1>
+
+<div class="row">
+  <div class="col-sm-2 col-md-3 col-lg-4">
+  </div>
+
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+    <div class="form-group">
+      <%= form_for(object) do |f| %>
+        <%= render 'fields', f: f %>
+        <%= f.submit text_submit_btn, class: "btn btn-success" %>
+        <%= link_to "Cancel", "javascript:history.back()", class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-sm-2 col-md-3 col-lg-4">
+  </div>
+</div>

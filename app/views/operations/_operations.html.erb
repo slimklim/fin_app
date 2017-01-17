@@ -1,0 +1,19 @@
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <%= link_to "Add operation", new_operation_path, class: "btn btn-lg btn-primary"%>
+    <h3 style="float: right">Balance: <%= @balance %></h3>
+    <br>
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well" id='filter_form' hidden>
+      <%= render 'filter' %>
+    </div>
+
+    <%= render 'operations_table' %>
+
+  </div>
+</div>
+
+
+

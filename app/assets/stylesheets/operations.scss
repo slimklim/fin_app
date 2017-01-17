@@ -1,0 +1,22 @@
+// Place all the styles related to the Operations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$red-light: #f88;
+$green-light: #8f8;
+
+tr {
+  background-color: black;
+  color: white;
+}
+
+tr.credit {
+  background-color: $green-light;
+  color: black;
+}
+
+tr.debit {
+  background-color: $red-light;
+  color: black;
+}
+

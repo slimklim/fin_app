@@ -1,0 +1,33 @@
+
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.label :date %>
+<%= f.date_field :date, max: Date.today, class: "form-control" %>
+
+<%= f.label :value %>
+<div class="input-group">
+  <span class="input-group-addon " style="height: 34px;">
+    <label>
+      CREDIT <%= f.check_box(:credit) %>
+    </label>
+  </span>
+  <%= f.number_field :value, step: "0.01", min: "0", max: "99999.99", class: "form-control" %>
+</div>
+
+<br>
+
+<%= f.label :tag %>
+<div class="input-group">
+  <%= f.text_field :tag, class: "form-control" %>
+  <div class="input-group-btn" >
+    <%= f.collection_select :tag, current_user.operations.select(:tag).distinct, :tag, :tag,
+          { prompt: "Select"},
+          { index: "select", class: "btn btn-default dropdown-toggle",
+            onchange: "pasteTag(this);", style: "height: 34px;" } %>
+  </div>
+</div>
+
+<br>
+
+<%= f.label :comment %>
+<%= f.text_area :comment, class: "form-control" %>

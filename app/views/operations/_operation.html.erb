@@ -1,0 +1,20 @@
+<tr  <%= operation.credit  ? 'class=credit' : 'class=debit' %> >
+  <td>
+    <%= link_to "Show", operation, class: "btn btn-xs btn-info" %>
+    <%= link_to "Edit", edit_operation_path(operation), class: "btn btn-xs btn-warning" %>
+    <%= link_to "Delete", operation, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-xs btn-danger" %>
+  </td>
+  <td>
+    <%= operation.date %>
+  </td>
+  <td>
+    <%= operation.credit ? '+' : '-' %>
+    <%= operation.value %>
+  </td>
+  <td class="hidden-xs">
+    <%= operation.tag %>
+  </td>
+  <td class="hidden-xs hidden-sm">
+    <%= "#{wrap(operation.comment)[0..55]} ..." %>
+  </td>
+</tr>

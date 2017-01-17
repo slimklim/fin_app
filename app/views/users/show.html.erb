@@ -1,0 +1,16 @@
+<% provide(:title, "Profile") %>
+<div class="row">
+  <aside class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <section>
+      <h1>
+        <%= current_user.name %>
+      </h1>
+      <h2>
+        <%= current_user.email %>
+      </h2>
+      <div align=center>
+        <%= link_to "Edit profile", profile_edit_path %>
+      </div>
+    </section>
+  </aside>
+</div>

@@ -1,0 +1,20 @@
+<%= will_paginate @operations.paginate(page: params[:page]), inner_window: 1, outer_window: 0, previous_label: "<<", next_label: ">>" %>
+
+<table class="table" id="filterrific_results">
+  <tr>
+    <th>
+      <%= form_tag(charts_path, id: "charts", target: "_blank") do%>
+        <%=  text_field_tag(:ids, @filterrific.find.map { |oper| oper[:id] }, hidden: "hidden") %>
+      <% end %>
+      <button class="btn btn-default" type="submit" form="charts">Charts</button>
+      <button class="btn btn-default" onclick="visibleFilterForm()">Filters</button>
+    </th>
+    <th>Date</th>
+    <th>Value</th>
+    <th class="hidden-xs">Tag</th>
+    <th class="hidden-xs hidden-sm">Comment</th>
+  </tr>
+  <%= render @operations.paginate(page: params[:page]) %>
+</table>
+
+<%= will_paginate @operations.paginate(page: params[:page]), inner_window: 1, outer_window: 0, previous_label: "<<", next_label: ">>" %>

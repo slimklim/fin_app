@@ -1,0 +1,23 @@
+<% provide(:title, 'Charts') %>
+
+<div class="row">
+
+  <h1>Charts</h1>
+
+  <%= line_chart [
+    {name: "Credit", data: @filtered_operations.where(credit: true).group_by_day(:date).sum(:value)},
+    {name: "Debit", data: @filtered_operations.where(credit: false).group_by_day(:date).sum(:value)}
+      ], colors: ["green", "red"] %>
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="border-right: 1px solid #eaeaea;">
+    <h3>Credit</h3>
+    <%= render 'charts', operations: @filtered_operations.where(credit: true)%>
+  </div>
+
+
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <h3>Debit</h3>
+    <%= render 'charts', operations: @filtered_operations.where(credit: false)%>
+  </div>
+
+</div>
